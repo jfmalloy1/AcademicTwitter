@@ -1,0 +1,10 @@
+Size: 10
+Time for 10 tweets: 1.176164150238037
+Size: 100
+Time for 100 tweets: 4.150420904159546
+Size: 1000
+Time for 1000 tweets: 75.84796690940857
+Size: 10000
+Time for 10000 tweets: 1012.4375329017639
+Size: 100000
+Time for 100000 tweets: 10014.545455932617
