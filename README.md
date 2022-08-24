@@ -6,7 +6,13 @@ Ancedotally, academic twitter has been very negative in light of COVID-19. Is th
 
 ## Eventual Goal
 
-Perform full sentiment analysis over tweet data, something like this: https://realpython.com/python-nltk-sentiment-analysis/
+Perform full sentiment analysis over tweet data.
+
+Some helpful articles are listed below:
+- https://realpython.com/python-nltk-sentiment-analysis/ (uses NLTK)
+- https://www.datacamp.com/tutorial/simplifying-sentiment-analysis-python (Naive Bayes)
+- https://techvidvan.com/tutorials/python-sentiment-analysis/ (uses TensorFlow)
+- https://www.analyticsvidhya.com/blog/2021/06/rule-based-sentiment-analysis-in-python/ (uses NLTK's VADER)
 
 ## Scripts description & goals
 
