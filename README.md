@@ -3,3 +3,35 @@ Coronavirus affects on Academic Twitter
 
 ## Purpose
 Ancedotally, academic twitter has been very negative in light of COVID-19. Is this observed trend real? We use word embeddings and other linguistic tools to answer this question.
+
+## Eventual Goal
+
+Perform full sentiment analysis over tweet data, something like this: https://realpython.com/python-nltk-sentiment-analysis/
+
+## Scripts description & goals
+
+```
+test_scrape.py
+```
+
+Scrapes tweet data, filtered through search terms in `search_terms.txt`
+
+Date range is hard-coded in `get_search_terms()` method - change this for additional dates. Currently set to 3-month time periods from 2016-2020 (up through mid-June)
+
+Necessary packages: `pandas`, `time`, `GetOldTweets3` [package here](https://pypi.org/project/GetOldTweets3/)
+
+```
+basic_stats.py
+```
+
+Generates basic statistics & plots about tweets obtained through `test_scrape.py`
+
+Current statistics: total number of tweets, tweets obtained from each query in `search_terms.txt`, hashtags & geotages used within total tweet set
+
+``` 
+neg_pos_ratio.py
+```
+
+Finds the ratio of negative to positive words within tweet dataset
+
+Uses predefined sets of negative and positive words (in `PosNeg_Words` directory) to generate ratios

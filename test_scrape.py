@@ -1,12 +1,18 @@
 import GetOldTweets3 as got
-import re
 import time
 import pandas as pd
 
-""" Set up dates - in 3 month intervals - for fine-grained analyses """
-""" Input: none """
-""" Output: list of date pairs (beginning and end), from Jan 1 2016 to present day in 3 month interval """
+
 def get_date_pairs():
+    """ Set up dates - in 3 month intervals - for fine-grained analyses 
+    
+    Args:
+        None
+
+    Returns:
+        pairs (list): date pairs from Jan 1 2016 to mid-June 2020 in 3 month interval 
+    """
+
     pairs = []
     #3-month intervals for all years from 2016-2019
     for year in ["2016", "2017", "2018", "2019"]:
@@ -20,23 +26,30 @@ def get_date_pairs():
 
     return pairs
 
-""" Set up search terms """
-""" Input: none """
-""" Output: list of search terms """
+
 def get_search_terms():
-    # terms = ["leaving academia", "'leaving' & 'phd'", "\"leave\" & \"academia\"", "\"left\" & \"lab\"",
-    #     "\"leaving\" & \"lab\"", "\"former\" & \"lab\"", "\"leaving\" & \"graduate\"", "\"leaving\" & \"grad\"",
-    #     "\"quit\" & \"academia\"", "\"quit\" & \"lab\"", "\"quit\" & \"grad\"", "\"quit\" & \"graduate\"",
-    #     "\"former\" & \"professor\"", "\"former\" & \"academic\""]
-    with open("search_terms.txt") as f:
+    """ Set up search terms 
+ 
+    Args: 
+        None
+
+    Returns:
+        list: all search terms within Searches/search_terms.txt
+
+    """
+    with open("Searches/search_terms.txt") as f:
         lines = f.read().splitlines()
     return lines
+
 
 def main():
     #Criteria for tweets
     max_tweets = 10000
 
-    df = pd.DataFrame(columns=["query", "id", "permalink", "username", "to", "text", "date", "retweets", "favorites", "mentions", "hashtags", "geo"])
+    df = pd.DataFrame(columns=[
+        "query", "id", "permalink", "username", "to", "text", "date",
+        "retweets", "favorites", "mentions", "hashtags", "geo"
+    ])
 
     date_pairs = get_date_pairs()
     search_terms = get_search_terms()
@@ -47,7 +60,9 @@ def main():
         #Loop through each search term
         for term in search_terms:
             #Set up criteria based on date and search term
-            tweetCriteria = got.manager.TweetCriteria().setQuerySearch(term).setSince(dates[0]).setUntil(dates[1]).setMaxTweets(max_tweets)
+            tweetCriteria = got.manager.TweetCriteria().setQuerySearch(
+                term).setSince(dates[0]).setUntil(
+                    dates[1]).setMaxTweets(max_tweets)
 
             #Actually get the tweets - timed along the way
             start = time.time()
@@ -76,10 +91,9 @@ def main():
                     df.loc[0] = l
                 else:
                     df.loc[df.index.max() + 1] = l
-            print("Time for", max_tweets, term, dates, "tweets:", end-start)
+            print("Time for", max_tweets, term, dates, "tweets:", end - start)
 
     df.to_csv("tweets.csv")
-
 
 
 if __name__ == "__main__":
